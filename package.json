@@ -30,17 +30,24 @@
 		"test": "node ./out/test/runTest.js"
 	},
 	"devDependencies": {
-		"@types/vscode": "^1.47.0",
 		"@types/glob": "^7.1.1",
 		"@types/mocha": "^7.0.2",
 		"@types/node": "^13.11.0",
-		"eslint": "^6.8.0",
-		"@typescript-eslint/parser": "^2.30.0",
+		"@types/vscode": "^1.47.0",
+		"@types/webpack": "^4.41.21",
 		"@typescript-eslint/eslint-plugin": "^2.30.0",
+		"@typescript-eslint/parser": "^2.30.0",
+		"eslint": "^6.8.0",
 		"glob": "^7.1.6",
 		"mocha": "^7.1.2",
-		"typescript": "^3.8.3",
-		"vscode-test": "^1.3.0"
+		"ts-loader": "^8.0.2",
+		"vscode-test": "^1.3.0",
+		"webpack": "^4.44.1",
+		"webpack-cli": "^3.3.12",
+		"@types/react": "^16.9.45",
+		"@types/react-dom": "^16.9.8",
+		"react": "^16.13.1",
+		"react-dom": "^16.13.1"
 	},
 	"repository": {
 		"type": "git",
@@ -51,5 +58,6 @@
 	"bugs": {
 		"url": "https://github.com/yotsugi-vip/ColorPalette/issues"
 	},
-	"homepage": "https://github.com/yotsugi-vip/ColorPalette#readme"
+	"homepage": "https://github.com/yotsugi-vip/ColorPalette#readme",
+	"dependencies": {}
 }
