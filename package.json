@@ -30,7 +30,9 @@
 		"test": "node ./out/test/runTest.js"
 	},
 	"devDependencies": {
+		"@material-ui/core": "^4.11.0",
 		"@types/glob": "^7.1.1",
+		"@types/material-ui": "^0.21.7",
 		"@types/mocha": "^7.0.2",
 		"@types/node": "^13.11.0",
 		"@types/react": "^16.9.45",

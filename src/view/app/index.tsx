@@ -1,15 +1,14 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import Hoge from './components/hoge';
-import Top from './components/Top';
+import EasySearch from './components/EasySearch';
 
 class App extends React.Component {
 
   render() {
     return (
       <>
-        <p>Hello World</p>
-        <Top />
+        <EasySearch />
         <Hoge />
       </>
     )

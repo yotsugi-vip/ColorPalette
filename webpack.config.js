@@ -23,6 +23,11 @@ const app = {
         extensions: [".ts", ".tsx", ".js", ".json"],
     },
 
+    performance: {
+        maxEntrypointSize: 500000,
+        maxAssetSize: 500000,
+    },
+
     devtool: "source-map",
 }
 

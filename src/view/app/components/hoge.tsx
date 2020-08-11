@@ -103,13 +103,14 @@ export default class Hoge extends Component {
 
 }
 
+const regex = new RegExp("^#[0-9abcdefABCDEF]{6}$")
 interface IProps { colorCode: string };
 interface IState { colorCode: string };
 export class ColorTips extends Component<IProps, IState> {
     constructor(props: IProps) {
         super(props);
         this.state = {
-            colorCode: props.colorCode
+            colorCode: regex.test(props.colorCode) ? props.colorCode : "#FFFFFF"
         };
     }
 
@@ -137,7 +138,7 @@ export class ColorTips extends Component<IProps, IState> {
                         <p style={{
                             color: this.__blackOrWhite(this.props.colorCode)
                         }}>
-                            {this.state.colorCode}
+                            {this.props.colorCode}
                         </p>
                     </div>
                 </div>
