@@ -20,9 +20,7 @@ export function activate(context: vscode.ExtensionContext) {
 		// The code you place here will be executed every time your command is executed
 
 		// Display a message box to the user
-		let view = new ViewLoader(context.extensionUri);
-		
-		vscode.window.showInformationMessage('Hello World from colorPalette!');
+		let view = new ViewLoader(context.extensionUri);		
 	});
 
 	context.subscriptions.push(disposable);
