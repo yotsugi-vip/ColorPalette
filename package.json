@@ -19,7 +19,36 @@
 				"command": "colorpalette.helloWorld",
 				"title": "Hello World"
 			}
-		]
+		],
+		"viewsContainers": {
+			"activitybar": [
+				{
+					"icon": "src/icon.svg",
+					"id": "colorPalette",
+					"title": "colorPalette"
+				}
+			]
+		},
+		"configuration": {
+			"title": "color palette",
+			"properties": {
+				"colorPalette.contextManuAction": {
+					"commit": {
+						"type": "object",
+						"properties": {
+							"addTag": {
+								"type": "boolean",
+								"title": "Add Tag..."
+							},
+							"createBranch": {
+								"type": "boolean",
+								"title": "Create Branch..."
+							}
+						}
+					}
+				}
+			}
+		}
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",

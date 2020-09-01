@@ -1,16 +1,5 @@
 import * as vscode from 'vscode';
 
-export interface IConfig {
-    name: string;
-    description: string;
-    users: IUser[];
-}
-export interface IUser {
-    name: string;
-    active: boolean;
-    roles: string[];
-}
-
 export default class ViewLoader {
     private readonly _panel: vscode.WebviewPanel | undefined;
     private readonly _extensionUri: vscode.Uri;
@@ -29,6 +18,11 @@ export default class ViewLoader {
             }
         );
         this._panel.webview.html = this.getBaseContent();
+        this._panel.webview.postMessage({ command: 'aiueo' });
+        console.log('asaaa');
+        this._panel.webview.onDidReceiveMessage(message => {
+            console.log(message.command);
+        });
     }
 
     private getBaseContent(): string {
@@ -39,7 +33,7 @@ export default class ViewLoader {
                     <head>
                         <meta charset="UTF-8">
                         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                        <title>Cat Coding</title>
+                        <title>color palette</title>
                     </head>
                     <body>
                         <div id="root"></div>
