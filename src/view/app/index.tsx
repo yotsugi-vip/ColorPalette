@@ -1,19 +1,23 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import RgbHexSearch from './components/ColorTips';
-
+import { RgbComponent } from "./components/hooktest/RgbComponent";
+import { HexComponent } from "./components/hooktest/HexComponent";
 const vscode = acquireVsCodeApi();
 
-class App extends React.Component {
-  render() {
-    return (
-      <>
-        <RgbHexSearch />
-      </>
-    )
-  }
+function App() {
+  return (
+    <div>
+      {
+        //<RgbHexSearch />
+      }
+      <HexComponent />
+      <RgbComponent color="red" ></RgbComponent>
+      <RgbComponent color="green" ></RgbComponent>
+      <RgbComponent color="blue" ></RgbComponent>
+    </div>
+  )
 }
-
 
 ReactDOM.render(<App />, document.getElementById("root"));
 
