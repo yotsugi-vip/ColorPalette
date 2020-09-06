@@ -1,16 +1,16 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import RgbHexSearch from './components/ColorTips';
 import { RgbComponent } from "./components/hooktest/RgbComponent";
 import { HexComponent } from "./components/hooktest/HexComponent";
+import { Provider, useStore, useDispatch } from "react-redux";
+import { store } from "./store";
+import { PushColors } from "./action";
+import { colors } from "material-ui/styles";
 const vscode = acquireVsCodeApi();
 
 function App() {
   return (
     <div>
-      {
-        //<RgbHexSearch />
-      }
       <HexComponent />
       <RgbComponent color="red" ></RgbComponent>
       <RgbComponent color="green" ></RgbComponent>
@@ -19,16 +19,27 @@ function App() {
   )
 }
 
-ReactDOM.render(<App />, document.getElementById("root"));
+function message() {
+  window.addEventListener('message', event => {
+    //    const dispatch = useDispatch();
+    const data = event.data;
+    console.log(data.command);
+    vscode.postMessage({ command: 'recieve!!' });
+    switch (data.command) {
+      case 'INITIALIZE':
+        console.log('initialize command recieve');
+        //        dispatch(PushColors(data.data));
+        break;
+      default:
+        break;
+    }
+  });
+}
 
-window.addEventListener('message', event => {
-  const data = event.data;
-  console.log(data.command);
-  vscode.postMessage({ command: 'recieve!!' });
-  switch (data.command) {
-    case '':
-      break;
-    default:
-      break;
-  }
-});
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>
+  , document.getElementById("root")
+);
+message();

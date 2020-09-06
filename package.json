@@ -81,12 +81,14 @@
 		"vscode-test": "^1.3.0",
 		"webpack": "^4.44.1",
 		"webpack-cli": "^3.3.12",
-		"react-redux": "^7.2.1",
-		"redux": "^4.0.5",
 		"vsce": "^1.79.5",
+		"ts-loader": "^8.0.3"
+	},
+	"dependencies": {
 		"react": "^16.13.1",
 		"react-dom": "^16.13.1",
-		"ts-loader": "^8.0.3"
+		"react-redux": "^7.2.1",
+		"redux": "^4.0.5"
 	},
 	"repository": {
 		"type": "git",
@@ -97,6 +99,5 @@
 	"bugs": {
 		"url": "https://github.com/yotsugi-vip/ColorPalette/issues"
 	},
-	"homepage": "https://github.com/yotsugi-vip/ColorPalette#readme",
-	"dependencies": {}
+	"homepage": "https://github.com/yotsugi-vip/ColorPalette#readme"
 }

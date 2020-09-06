@@ -18,13 +18,13 @@ export default class ViewLoader {
             }
         );
         this._panel.webview.html = this.getBaseContent();
+        this._panel?.webview.postMessage({ command: 'INITIALIZE', data: ["a", "b", "c"] });
         this._panel.webview.onDidReceiveMessage(message => {
             switch (message) {
                 case 'loadJson':
                     this._panel?.webview.postMessage({ command: 'aiueo' });
                     break;
                 case 'saveJson':
-                    this._panel?.webview.postMessage({ command: 'aiueo' });
                     break;
                 default:
                     vscode.window.showErrorMessage('get undifined command : ' + message);
