@@ -1,7 +1,6 @@
 import * as React from 'react';
-import { useDispatch, useStore, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { SetRgbValue_HEX } from "../../action";
-import { useState } from "react";
 import { ColorTips } from "./colorTips";
 import { ISTORE } from '../../store';
 
