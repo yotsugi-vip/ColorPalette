@@ -7,6 +7,7 @@ import { store } from "./store";
 import { PushColors } from "./action";
 import { colors } from "material-ui/styles";
 const vscode = acquireVsCodeApi();
+var isAddEvent 
 
 function App() {
   return (
@@ -19,16 +20,16 @@ function App() {
   )
 }
 
+// hook内じゃないのでdispatchエラー?
+// store外ジャン...
 function message() {
   window.addEventListener('message', event => {
-    //    const dispatch = useDispatch();
     const data = event.data;
     console.log(data.command);
-    vscode.postMessage({ command: 'recieve!!' });
     switch (data.command) {
       case 'INITIALIZE':
         console.log('initialize command recieve');
-        //        dispatch(PushColors(data.data));
+        store.dispatch(PushColors(data.data));
         break;
       default:
         break;

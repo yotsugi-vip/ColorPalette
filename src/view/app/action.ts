@@ -1,12 +1,11 @@
-import { Action } from "redux";
+import { AnyAction } from "redux";
 
 /**
  * Action Type
  */
 // TODO action 型?
 export const PUSH_COLORS = 'PUSH_COLORS';
-interface PUSH_COLORS_ACTION {
-    action: string
+export interface PUSH_COLORS_ACTION extends AnyAction {
     payload: Array<string>
 };
 
@@ -15,7 +14,7 @@ interface PUSH_COLORS_ACTION {
  */
 export function PushColors(colors: Array<string>): PUSH_COLORS_ACTION {
     return {
-        action: PUSH_COLORS,
+        type: PUSH_COLORS,
         payload: colors
     }
 }
