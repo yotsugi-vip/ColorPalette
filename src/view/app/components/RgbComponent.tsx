@@ -1,11 +1,11 @@
 import * as React from 'react';
 import Slider from "@material-ui/core/Slider";
 import { ColorTips } from "./colorTips";
-import { SetRgbValue_RED, SetRgbValue_GREEN, SetRgbValue_BLUE } from "../../action";
+import { SetRgbValue_RED, SetRgbValue_GREEN, SetRgbValue_BLUE } from "../action";
 import { useDispatch, useSelector } from "react-redux";
-import { ISTORE } from "../../store";
+import { ISTORE } from "../store";
 import { Dispatch } from 'redux';
-
+import { getHexFromRgb } from "../color";
 
 type redType = "red";
 type greenType = "green";
@@ -41,19 +41,6 @@ const getStoreVal = (store: ISTORE, color: RGB) => {
     }
 }
 
-function getHexfromRgb(value: string, color: RGB) {
-    let ret: string = "000000";
-    let hex = ('00' + parseInt(value, 10).toString(16)).slice(-2);
-    if (color === 'red') {
-        ret = `${hex}0000`
-    } else if (color === 'green') {
-        ret = `00${hex}00`
-    } else if (color === 'blue') {
-        ret = `0000${hex}`
-    }
-    return ret;
-}
-
 interface IPROPS_RGB_COMPONENT { color: RGB }
 export function RgbComponent(props: IPROPS_RGB_COMPONENT) {
     const dispatch = useDispatch();
@@ -64,7 +51,7 @@ export function RgbComponent(props: IPROPS_RGB_COMPONENT) {
                 <input type="text" value={getStoreVal(store, props.color)}
                     onChange={(event: React.ChangeEvent<HTMLInputElement>) => dispatchRgb(props.color, event.target.value, dispatch)}
                 />
-                <ColorTips hex={getHexfromRgb(getStoreVal(store, props.color), props.color)} />
+                <ColorTips hex={getHexFromRgb(getStoreVal(store, props.color), props.color)} />
             </div>
             <Slider
                 max={255} min={0}

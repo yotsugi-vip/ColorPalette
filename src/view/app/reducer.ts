@@ -1,5 +1,6 @@
 import { PUSH_COLORS, PUSH_COLORS_ACTION, SET_RGB_VALUE, SET_HEX, SET_RED, SET_GREEN, SET_BLUE } from "./action";
-
+import { getHexFromRgb, getRgbFromHex, UpdateHex } from "./color";
+import { uptime } from "process";
 /**
  * favorite color save
  */
@@ -41,21 +42,27 @@ export function rgbValueReducer(state: ISTATE_RGB_VALUE = INITIALIZE_RGB_VALUE, 
             console.log("B_COMMAND:", action.type);
             console.log("STATE:", state.hex, "->", action.payload);
             return Object.assign({}, state, {
-                hex: action.payload
+                hex: action.payload,
+                red: getRgbFromHex(action.payload, "red"),
+                green: getRgbFromHex(action.payload, "green"),
+                blue: getRgbFromHex(action.payload, "blue")
             });
         case SET_RED:
             console.log("B_COMMAND:", action.type);
             return Object.assign({}, state, {
+                hex: UpdateHex(action.payload, state.hex, "red"),
                 red: action.payload
             });
         case SET_GREEN:
             console.log("B_COMMAND:", action.type);
             return Object.assign({}, state, {
+                hex: UpdateHex(action.payload, state.hex, "green"),
                 green: action.payload
             });
         case SET_BLUE:
             console.log("B_COMMAND:", action.type);
             return Object.assign({}, state, {
+                hex: UpdateHex(action.payload, state.hex, "blue"),
                 blue: action.payload
             });
         default:
