@@ -1,13 +1,13 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+
 import { RgbComponent } from "./components/hooktest/RgbComponent";
 import { HexComponent } from "./components/hooktest/HexComponent";
-import { Provider, useStore, useDispatch } from "react-redux";
+import { Provider } from "react-redux";
 import { store } from "./store";
 import { PushColors } from "./action";
-import { colors } from "material-ui/styles";
+
 const vscode = acquireVsCodeApi();
-var isAddEvent 
 
 function App() {
   return (
@@ -20,8 +20,6 @@ function App() {
   )
 }
 
-// hook内じゃないのでdispatchエラー?
-// store外ジャン...
 function message() {
   window.addEventListener('message', event => {
     const data = event.data;
@@ -43,4 +41,5 @@ ReactDOM.render(
   </Provider>
   , document.getElementById("root")
 );
+
 message();
