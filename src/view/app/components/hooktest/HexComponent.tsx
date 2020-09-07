@@ -1,13 +1,22 @@
 import * as React from 'react';
+import { useDispatch, useStore, useSelector } from "react-redux";
+import { SetRgbValue_HEX } from "../../action";
 import { useState } from "react";
 import { ColorTips } from "./colorTips";
+import { ISTORE } from '../../store';
 
 export function HexComponent() {
-    const [value, setValue] = useState("000000");
+    const dispatch = useDispatch();
+    const store = useSelector<ISTORE, ISTORE>(state => state);
+
     return (
         <div style={{ display: "flex" }}>
-            <input type="text" value={value} onChange={(event: React.ChangeEvent<HTMLInputElement>) => setValue(event.target.value)} />
-            <ColorTips hex={value} />
+            <input type="text" value={store.rgbValueReducer.hex}
+                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                    dispatch(SetRgbValue_HEX(event.target.value))
+                }}
+            />
+            <ColorTips hex={store.rgbValueReducer.hex} />
         </div>
     )
 }
