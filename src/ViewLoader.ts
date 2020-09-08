@@ -3,8 +3,10 @@ import * as vscode from 'vscode';
 export default class ViewLoader {
     private readonly _panel: vscode.WebviewPanel | undefined;
     private readonly _extensionUri: vscode.Uri;
+    private readonly _config: vscode.WorkspaceConfiguration;
 
     constructor(fileUri: vscode.Uri) {
+        this._config = vscode.workspace.getConfiguration('colorPalette');
         this._extensionUri = fileUri;
         this._panel = vscode.window.createWebviewPanel(
             "colorPalette",
@@ -18,27 +20,20 @@ export default class ViewLoader {
             }
         );
 
-        const config = vscode.workspace.getConfiguration('colorPalette');
-        console.log("PRE:", config.get('favoriteColors'));
-        config.update('favoriteColors', ["ABABAB"], true).then(() => {
-            console.log("POS:", config.get('favoriteColors'));
-            config.update('favoriteColors', undefined).then(() => {
-                console.log("POS:", config.get('favoriteColors'));
-                config.update('favoriteColors', ["AAAAAA","BBBBBB"]).then(() => {
-                    console.log("POS:", config.get('favoriteColors'));
-                });
-            });
-        });
-        //更新はされてる。
-        //取得時の値が古い?参照先は違う?
-
         this._panel.webview.html = this.getBaseContent();
-        this._panel?.webview.postMessage({ command: 'INITIALIZE', data: ["a", "b", "c"] });
+
+        let colors = this._config.get('favoriteColors');
+        console.log(colors);
+        this._panel?.webview.postMessage({ command: 'INITIALIZE', data: colors });
+
         this._panel.webview.onDidReceiveMessage(message => {
             switch (message) {
                 case 'loadJson':
+                    let colors = this._config.get('favoriteColors');
+                    this._panel?.webview.postMessage({ command: 'loadJson', data: colors });
                     break;
                 case 'saveJson':
+                    this._config.update('favoriteColors', message.data, true);
                     break;
                 default:
                     vscode.window.showErrorMessage('get undifined command : ' + message);
