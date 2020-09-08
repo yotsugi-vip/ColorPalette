@@ -1,11 +1,11 @@
 import * as React from 'react';
 import Slider from "@material-ui/core/Slider";
 import { ColorTips } from "./colorTips";
-import { SetRgbValue_RED, SetRgbValue_GREEN, SetRgbValue_BLUE } from "../action";
+import { SetRgbValue_RED, SetRgbValue_GREEN, SetRgbValue_BLUE } from "../../action";
 import { useDispatch, useSelector } from "react-redux";
-import { ISTORE } from "../store";
+import { ISTORE } from "../../store";
 import { Dispatch } from 'redux';
-import { getHexFromRgb } from "../color";
+import { getHexFromRgb } from "../../color";
 
 type redType = "red";
 type greenType = "green";
@@ -57,6 +57,9 @@ export function RgbComponent(props: IPROPS_RGB_COMPONENT) {
                 max={255} min={0}
                 value={parseInt(getStoreVal(store, props.color), 10)}
                 onChange={(_event: React.ChangeEvent<{}>, value: number | number[]) => dispatchRgb(props.color, value.toString(), dispatch)}
+                style={{
+                    width:"255px"
+                }}
             />
         </div>
     )

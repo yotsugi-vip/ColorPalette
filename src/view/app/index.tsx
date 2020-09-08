@@ -1,8 +1,8 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-import { RgbComponent } from "./components/RgbComponent";
-import { HexComponent } from "./components/HexComponent";
+import { RgbComponent } from "./components/rgb/RgbComponent";
+import { HexComponent } from "./components/rgb/HexComponent";
 import { Provider } from "react-redux";
 import { store } from "./store";
 import { PushColors } from "./action";

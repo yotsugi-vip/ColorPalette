@@ -17,12 +17,26 @@ export default class ViewLoader {
                 ]
             }
         );
+
+        const config = vscode.workspace.getConfiguration('colorPalette');
+        console.log("PRE:", config.get('favoriteColors'));
+        config.update('favoriteColors', ["ABABAB"], true).then(() => {
+            console.log("POS:", config.get('favoriteColors'));
+            config.update('favoriteColors', undefined).then(() => {
+                console.log("POS:", config.get('favoriteColors'));
+                config.update('favoriteColors', ["AAAAAA","BBBBBB"]).then(() => {
+                    console.log("POS:", config.get('favoriteColors'));
+                });
+            });
+        });
+        //更新はされてる。
+        //取得時の値が古い?参照先は違う?
+
         this._panel.webview.html = this.getBaseContent();
         this._panel?.webview.postMessage({ command: 'INITIALIZE', data: ["a", "b", "c"] });
         this._panel.webview.onDidReceiveMessage(message => {
             switch (message) {
                 case 'loadJson':
-                    this._panel?.webview.postMessage({ command: 'aiueo' });
                     break;
                 case 'saveJson':
                     break;

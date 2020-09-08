@@ -1,6 +1,5 @@
 import { PUSH_COLORS, PUSH_COLORS_ACTION, SET_RGB_VALUE, SET_HEX, SET_RED, SET_GREEN, SET_BLUE } from "./action";
-import { getHexFromRgb, getRgbFromHex, UpdateHex } from "./color";
-import { uptime } from "process";
+import { getRgbFromHex, UpdateHex } from "./color";
 /**
  * favorite color save
  */

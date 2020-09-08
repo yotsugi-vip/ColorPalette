@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { SetRgbValue_HEX } from "../action";
+import { SetRgbValue_HEX } from "../../action";
 import { ColorTips } from "./colorTips";
-import { ISTORE } from '../store';
+import { ISTORE } from '../../store';
 
 export function HexComponent() {
     const dispatch = useDispatch();

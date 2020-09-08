@@ -31,22 +31,19 @@
 			]
 		},
 		"configuration": {
-			"title": "color palette",
+			"title": "ColorPalette",
 			"properties": {
-				"colorPalette.contextManuAction": {
-					"commit": {
-						"type": "object",
-						"properties": {
-							"addTag": {
-								"type": "boolean",
-								"title": "Add Tag..."
-							},
-							"createBranch": {
-								"type": "boolean",
-								"title": "Create Branch..."
-							}
-						}
-					}
+				"colorPalette.favoriteColors": {
+					"type": "array",
+					"default": [
+						"000000",
+						"121212",
+						"343434",
+						"565656",
+						"787878",
+						"9a9a9a"
+					],
+					"description": "your favorite colors!"
 				}
 			}
 		}
