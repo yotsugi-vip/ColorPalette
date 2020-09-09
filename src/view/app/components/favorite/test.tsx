@@ -32,17 +32,13 @@ export function InputFavorite() {
 export function FavoriteColors() {
     const store = useSelector<ISTORE, ISTORE>(state => state);
     console.log("store:", store.colorsReducer.colors);
+    const a = ["0", "1", "2", "3", "4"];
     return (
         <div>
             <p>Favorite Colors</p>
-            {store.colorsReducer.colors.map((val) => {
-                <div>
-                    <p>WHY?????</p>
-                    <Button>
-                        <p>{val}</p>
-                    </Button>
-                </div>;
-            })}
+            {store.colorsReducer.colors.map((val) => (
+                <p>{val}</p>
+            ))}
         </div>
     );
 }
