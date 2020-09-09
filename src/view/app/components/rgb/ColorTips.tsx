@@ -8,8 +8,8 @@ function blackOrWhite(colorCode: string): string {
     return brightness < 125 ? "#FFFFFF" : "#000000";
 }
 
-interface ColorTips_Props { hex: string };
-export function ColorTips(props: ColorTips_Props = { hex: "000000" }) {
+interface IPropsColorTips { hex: string };
+export function ColorTips(props: IPropsColorTips = { hex: "000000" }) {
 
     return (
         <div>
@@ -27,5 +27,5 @@ export function ColorTips(props: ColorTips_Props = { hex: "000000" }) {
                 >{props.hex}</p>
             </div>
         </div>
-    )
+    );
 }

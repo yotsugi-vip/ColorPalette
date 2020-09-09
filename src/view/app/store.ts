@@ -1,5 +1,5 @@
 import { createStore, combineReducers } from "redux";
-import { colorsReducer, rgbValueReducer, ISTATE_COLORS, ISTATE_RGB_VALUE } from "./reducer";
+import { colorsReducer, rgbValueReducer, IStateColors, IStateRgbValue } from "./reducer";
 import { createSelectorHook } from "react-redux";
 export const reducer = combineReducers({
     colorsReducer,
@@ -8,6 +8,6 @@ export const reducer = combineReducers({
 
 export const store = createStore(reducer);
 export interface ISTORE {
-    colorsReducer: ISTATE_COLORS
-    rgbValueReducer: ISTATE_RGB_VALUE
+    colorsReducer: IStateColors
+    rgbValueReducer: IStateRgbValue
 }

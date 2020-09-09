@@ -7,6 +7,8 @@ import { Provider } from "react-redux";
 import { store } from "./store";
 import { PushColors } from "./action";
 
+import { FavoriteColors, InputFavorite } from "./components/favorite/test";
+
 const vscode = acquireVsCodeApi();
 
 function App() {
@@ -16,8 +18,12 @@ function App() {
       <RgbComponent color="red" ></RgbComponent>
       <RgbComponent color="green" ></RgbComponent>
       <RgbComponent color="blue" ></RgbComponent>
+      <div>
+        <InputFavorite />
+        <FavoriteColors />
+      </div>
     </div>
-  )
+  );
 }
 
 function message() {

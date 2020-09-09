@@ -1,25 +1,34 @@
-import { PUSH_COLORS, PUSH_COLORS_ACTION, SET_RGB_VALUE, SET_HEX, SET_RED, SET_GREEN, SET_BLUE } from "./action";
+import { PUSH_COLORS, IPushColorsAction, ISetRgbValue, SET_HEX, SET_RED, SET_GREEN, SET_BLUE, ADD_COLOR, DELETE_COLOR, } from "./action";
 import { getRgbFromHex, UpdateHex } from "./color";
 /**
  * favorite color save
  */
-export interface ISTATE_COLORS { colors: Array<string> }
-const INITIALIZE_COLORS: ISTATE_COLORS = {
+export interface IStateColors { colors: Array<string> }
+const INITIALIZE_COLORS: IStateColors = {
     colors: ["initialize"]
-}
+};
 
-export function colorsReducer(state: ISTATE_COLORS = INITIALIZE_COLORS, action: PUSH_COLORS_ACTION) {
+export function colorsReducer(state: IStateColors = INITIALIZE_COLORS, action: IPushColorsAction) {
+    console.log('colorsReducer');
+    console.log('action: ', action.type);
+    console.log('value: ', action.payload);
     switch (action.type) {
         case PUSH_COLORS:
-            console.log("A_COMMAND:", action.type);
-            console.log("STATE:", state.colors, "->", action.payload);
             let data = Object.assign({}, state, {
                 colors: action.payload
             });
             return data;
+        case ADD_COLOR:
+            let add = state.colors.slice();
+            return Object.assign({}, state, {
+                colors: add.concat(action.payload)
+            });
+        case DELETE_COLOR:
+            let del = state.colors.slice();
+            return Object.assign({}, state, {
+                colors: del.filter((value) => { action.payload[0] !== value; })
+            });
         default:
-            console.log("A_DEFAULT_COMMAND:", action.type);
-            console.log("STATE:", state.colors, "->", action.payload);
             return state;
     }
 }
@@ -27,19 +36,20 @@ export function colorsReducer(state: ISTATE_COLORS = INITIALIZE_COLORS, action: 
 /**
  * RGB value save
  */
-export interface ISTATE_RGB_VALUE { hex: string, red: string, blue: string, green: string };
-const INITIALIZE_RGB_VALUE: ISTATE_RGB_VALUE = {
+export interface IStateRgbValue { hex: string, red: string, blue: string, green: string };
+const INITIALIZE_RGB_VALUE: IStateRgbValue = {
     hex: "000000",
     red: "0",
     green: "0",
     blue: "0"
-}
+};
 
-export function rgbValueReducer(state: ISTATE_RGB_VALUE = INITIALIZE_RGB_VALUE, action: SET_RGB_VALUE) {
+export function rgbValueReducer(state: IStateRgbValue = INITIALIZE_RGB_VALUE, action: ISetRgbValue) {
+    console.log('rgbValueReducer');
+    console.log('action: ', action.type);
+    console.log('value: ', action.payload);
     switch (action.type) {
         case SET_HEX:
-            console.log("B_COMMAND:", action.type);
-            console.log("STATE:", state.hex, "->", action.payload);
             return Object.assign({}, state, {
                 hex: action.payload,
                 red: getRgbFromHex(action.payload, "red"),
@@ -47,25 +57,21 @@ export function rgbValueReducer(state: ISTATE_RGB_VALUE = INITIALIZE_RGB_VALUE, 
                 blue: getRgbFromHex(action.payload, "blue")
             });
         case SET_RED:
-            console.log("B_COMMAND:", action.type);
             return Object.assign({}, state, {
                 hex: UpdateHex(action.payload, state.hex, "red"),
                 red: action.payload
             });
         case SET_GREEN:
-            console.log("B_COMMAND:", action.type);
             return Object.assign({}, state, {
                 hex: UpdateHex(action.payload, state.hex, "green"),
                 green: action.payload
             });
         case SET_BLUE:
-            console.log("B_COMMAND:", action.type);
             return Object.assign({}, state, {
                 hex: UpdateHex(action.payload, state.hex, "blue"),
                 blue: action.payload
             });
         default:
-            console.log("B_DEFAULT_COMMAND:", action.type);
             return state;
     }
 }

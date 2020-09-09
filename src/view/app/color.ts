@@ -10,11 +10,11 @@ export function getHexFromRgb(value: string, color: RGB) {
     let ret: string = "000000";    
     let hex = ('00' + parseInt(value, 10).toString(16)).slice(-2);
     if (color === 'red') {
-        ret = `${hex}0000`
+        ret = `${hex}0000`;
     } else if (color === 'green') {
-        ret = `00${hex}00`
+        ret = `00${hex}00`;
     } else if (color === 'blue') {
-        ret = `0000${hex}`
+        ret = `0000${hex}`;
     }
     return ret;
 }
