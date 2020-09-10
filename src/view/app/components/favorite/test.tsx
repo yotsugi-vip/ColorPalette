@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IPushColorsAction, PushColors, AddColor } from "../../action";
 import { ISTORE } from "../../store";
+import { MenuItem, Menu, Paper } from "@material-ui/core";
 
 /**
  * inputの値はstateで管理でいい
@@ -37,8 +38,26 @@ export function FavoriteColors() {
         <div>
             <p>Favorite Colors</p>
             {store.colorsReducer.colors.map((val) => (
-                <p>{val}</p>
+                <FavoriteColorTip colorCode={val} />
             ))}
+        </div>
+    );
+}
+
+interface IPropsFavoriteColor { colorCode: string }
+export function FavoriteColorTip(props: IPropsFavoriteColor) {
+    return (
+        <div>
+            <Paper style={{
+                backgroundColor: `#${props.colorCode}`,
+                height: '50px',
+                width: '100px'
+            }}>
+                <Menu open={false}>
+                    <MenuItem>COPY</MenuItem>
+                    <MenuItem>DELETE</MenuItem>
+                </Menu>
+            </Paper>
         </div>
     );
 }
