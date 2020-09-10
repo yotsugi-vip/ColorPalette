@@ -7,7 +7,7 @@ import { Provider } from "react-redux";
 import { store } from "./store";
 import { PushColors } from "./action";
 
-import { FavoriteColors, InputFavorite } from "./components/favorite/test";
+import { FavoriteColors, InputFavorite } from "./components/favorite/FavoriteColor";
 
 function App() {
   return (

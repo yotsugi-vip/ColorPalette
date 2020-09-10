@@ -1,5 +1,6 @@
 import { PUSH_COLORS, IPushColorsAction, ISetRgbValue, SET_HEX, SET_RED, SET_GREEN, SET_BLUE, ADD_COLOR, DELETE_COLOR, } from "./action";
 import { getRgbFromHex, UpdateHex } from "./color";
+import { vscode } from "./vscodeapi";
 /**
  * favorite color save
  */
@@ -9,6 +10,8 @@ const INITIALIZE_COLORS: IStateColors = {
 };
 
 export function colorsReducer(state: IStateColors = INITIALIZE_COLORS, action: IPushColorsAction) {
+    let ret = {};
+
     console.log('colorsReducer');
     console.log('action: ', action.type);
     console.log('value: ', action.payload);
@@ -20,15 +23,18 @@ export function colorsReducer(state: IStateColors = INITIALIZE_COLORS, action: I
             return data;
         case ADD_COLOR:
             let add = state.colors.slice();
+            add = add.concat(action.payload);
+            vscode.postMessage({ command: 'saveJson', data: add });
+
             return Object.assign({}, state, {
-                colors: add.concat(action.payload)
+                colors: add
             });
         case DELETE_COLOR:
             let del = state.colors.slice();
-            console.log(del);
-            console.log(del.filter((value) => (value !== action.payload[0])));
+            del = del.filter((value) => (value !== action.payload[0]));
+            vscode.postMessage({ command: 'saveJson', data: del });
             return Object.assign({}, state, {
-                colors: del.filter((value) => (value !== action.payload[0]))
+                colors: del
             });
         default:
             return state;

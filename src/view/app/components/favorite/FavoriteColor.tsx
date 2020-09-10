@@ -5,8 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AddColor, DeleteColor } from "../../action";
 import { ISTORE } from "../../store";
 import { MenuItem, Menu, Paper } from "@material-ui/core";
-const vscode = acquireVsCodeApi();
-
+import { vscode } from "../../vscodeapi";
 /**
  * inputの値はstateで管理でいい
  * jsonの値をstoreで管理する
