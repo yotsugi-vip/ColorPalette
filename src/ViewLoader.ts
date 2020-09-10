@@ -27,13 +27,19 @@ export default class ViewLoader {
         this._panel?.webview.postMessage({ command: 'INITIALIZE', data: colors });
 
         this._panel.webview.onDidReceiveMessage(message => {
-            switch (message) {
+            console.log(message);
+            switch (message.command) {
                 case 'loadJson':
                     let colors = this._config.get('favoriteColors');
                     this._panel?.webview.postMessage({ command: 'loadJson', data: colors });
                     break;
                 case 'saveJson':
                     this._config.update('favoriteColors', message.data, true);
+                    break;
+                case 'clip':
+                    vscode.env.clipboard.writeText(`#${message.data}`).then(() => {
+                        vscode.window.showInformationMessage(`Copy: #${message.data}`);
+                    });
                     break;
                 default:
                     vscode.window.showErrorMessage('get undifined command : ' + message);

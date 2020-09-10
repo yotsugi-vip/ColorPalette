@@ -9,8 +9,6 @@ import { PushColors } from "./action";
 
 import { FavoriteColors, InputFavorite } from "./components/favorite/test";
 
-const vscode = acquireVsCodeApi();
-
 function App() {
   return (
     <div>

@@ -2,9 +2,10 @@ import * as React from "react";
 import { Button } from "@material-ui/core";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { IPushColorsAction, PushColors, AddColor } from "../../action";
+import { AddColor, DeleteColor } from "../../action";
 import { ISTORE } from "../../store";
 import { MenuItem, Menu, Paper } from "@material-ui/core";
+const vscode = acquireVsCodeApi();
 
 /**
  * inputの値はstateで管理でいい
@@ -32,32 +33,61 @@ export function InputFavorite() {
 
 export function FavoriteColors() {
     const store = useSelector<ISTORE, ISTORE>(state => state);
-    console.log("store:", store.colorsReducer.colors);
-    const a = ["0", "1", "2", "3", "4"];
     return (
         <div>
             <p>Favorite Colors</p>
-            {store.colorsReducer.colors.map((val) => (
-                <FavoriteColorTip colorCode={val} />
-            ))}
+            <div>
+                {store.colorsReducer.colors.map((val) => (
+                    <FavoriteColorTip colorCode={val} />
+                ))}
+            </div>
         </div>
     );
 }
 
 interface IPropsFavoriteColor { colorCode: string }
 export function FavoriteColorTip(props: IPropsFavoriteColor) {
+    const dispatch = useDispatch();
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     return (
         <div>
-            <Paper style={{
-                backgroundColor: `#${props.colorCode}`,
-                height: '50px',
-                width: '100px'
-            }}>
-                <Menu open={false}>
-                    <MenuItem>COPY</MenuItem>
-                    <MenuItem>DELETE</MenuItem>
-                </Menu>
-            </Paper>
+            <Paper
+                style={{
+                    backgroundColor: `#${props.colorCode}`,
+                    margin: '5px 5px 5px 5px',
+                    height: '50px',
+                    width: '100px',
+                    float: "left"
+                }}
+                onClick={(event: React.MouseEvent<HTMLDivElement, MouseEvent>) => setAnchorEl(event.currentTarget)}
+            />
+            <Menu
+                open={Boolean(anchorEl)}
+                anchorEl={anchorEl}
+                onClose={(_event: {}, _reason: "backdropClick" | "escapeKeyDown") => setAnchorEl(null)}
+                keepMounted
+            >
+                <MenuItem
+                    onClick={(_event: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
+                        setAnchorEl(null);
+                        vscode.postMessage({
+                            command: 'clip',
+                            data: props.colorCode
+                        });
+                    }}
+
+                >
+                    CLIP BOARD COPY
+                </MenuItem>
+                <MenuItem
+                    onClick={(_event: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
+                        setAnchorEl(null);
+                        dispatch(DeleteColor(props.colorCode));
+                    }}
+                >
+                    DELETE
+                </MenuItem>
+            </Menu>
         </div>
     );
 }

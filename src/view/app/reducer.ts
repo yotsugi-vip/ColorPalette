@@ -25,8 +25,10 @@ export function colorsReducer(state: IStateColors = INITIALIZE_COLORS, action: I
             });
         case DELETE_COLOR:
             let del = state.colors.slice();
+            console.log(del);
+            console.log(del.filter((value) => (value !== action.payload[0])));
             return Object.assign({}, state, {
-                colors: del.filter((value) => { action.payload[0] !== value; })
+                colors: del.filter((value) => (value !== action.payload[0]))
             });
         default:
             return state;

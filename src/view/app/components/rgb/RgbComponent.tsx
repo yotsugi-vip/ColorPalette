@@ -26,7 +26,7 @@ const dispatchRgb = (color: RGB, value: string, dispatch: Dispatch<any>) => {
         default:
             break;
     }
-}
+};
 
 const getStoreVal = (store: ISTORE, color: RGB) => {
     switch (color) {
@@ -39,10 +39,10 @@ const getStoreVal = (store: ISTORE, color: RGB) => {
         default:
             return store.rgbValueReducer.red;
     }
-}
+};
 
-interface IPROPS_RGB_COMPONENT { color: RGB }
-export function RgbComponent(props: IPROPS_RGB_COMPONENT) {
+interface IPropsRgbComponent { color: RGB }
+export function RgbComponent(props: IPropsRgbComponent) {
     const dispatch = useDispatch();
     const store = useSelector<ISTORE, ISTORE>(state => state);
     return (
@@ -62,5 +62,5 @@ export function RgbComponent(props: IPROPS_RGB_COMPONENT) {
                 }}
             />
         </div>
-    )
+    );
 }

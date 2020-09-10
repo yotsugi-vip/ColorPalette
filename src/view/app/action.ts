@@ -4,13 +4,13 @@ import { AnyAction } from "redux";
  * Action Type
  */
 export const PUSH_COLORS = 'PUSH_COLORS';
+export const ADD_COLOR = 'ADD_COLOR';
+export const DELETE_COLOR = 'DELETE_COLOR';
+
 export interface IPushColorsAction extends AnyAction {
     payload: Array<string>
 }
 
-export const ADD_COLOR = 'ADD_COLOR';
-
-export const DELETE_COLOR = 'ADD_COLOR';
 /**
  * Action Creator
  */
