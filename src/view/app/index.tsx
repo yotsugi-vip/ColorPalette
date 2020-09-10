@@ -12,14 +12,20 @@ import { FavoriteColors, InputFavorite } from "./components/favorite/FavoriteCol
 function App() {
   return (
     <div>
-      <HexComponent />
-      <RgbComponent color="red" ></RgbComponent>
-      <RgbComponent color="green" ></RgbComponent>
-      <RgbComponent color="blue" ></RgbComponent>
-      <div>
-        <InputFavorite />
-        <FavoriteColors />
+      <div style={{
+        display: "flex"
+      }}>
+        <div>
+          <HexComponent />
+        </div>
+        <div style={{marginLeft:"10px"}}>
+          <RgbComponent color="red" ></RgbComponent>
+          <RgbComponent color="green" ></RgbComponent>
+          <RgbComponent color="blue" ></RgbComponent>
+        </div>
       </div>
+      <InputFavorite />
+      <FavoriteColors />
     </div>
   );
 }
