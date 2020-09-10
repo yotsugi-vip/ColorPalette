@@ -36,15 +36,15 @@ export function FavoriteColors() {
         <div>
             <p>Favorite Colors</p>
             <div>
-                {store.colorsReducer.colors.map((val) => (
-                    <FavoriteColorTip colorCode={val} />
+                {store.colorsReducer.colors.map((val, i) => (
+                    <FavoriteColorTip colorCode={val} index={i} />
                 ))}
             </div>
         </div>
     );
 }
 
-interface IPropsFavoriteColor { colorCode: string }
+interface IPropsFavoriteColor { colorCode: string, index: number }
 export function FavoriteColorTip(props: IPropsFavoriteColor) {
     const dispatch = useDispatch();
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -81,7 +81,7 @@ export function FavoriteColorTip(props: IPropsFavoriteColor) {
                 <MenuItem
                     onClick={(_event: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
                         setAnchorEl(null);
-                        dispatch(DeleteColor(props.colorCode));
+                        dispatch(DeleteColor(props.colorCode, props.index));
                     }}
                 >
                     DELETE

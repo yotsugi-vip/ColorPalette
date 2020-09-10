@@ -31,7 +31,7 @@ export function colorsReducer(state: IStateColors = INITIALIZE_COLORS, action: I
             });
         case DELETE_COLOR:
             let del = state.colors.slice();
-            del = del.filter((value) => (value !== action.payload[0]));
+            del = del.filter((_value, i) => (i !== action.index));
             vscode.postMessage({ command: 'saveJson', data: del });
             return Object.assign({}, state, {
                 colors: del

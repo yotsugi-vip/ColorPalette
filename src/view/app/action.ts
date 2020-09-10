@@ -9,10 +9,12 @@ export const DELETE_COLOR = 'DELETE_COLOR';
 
 export interface IPushColorsAction extends AnyAction {
     payload: Array<string>
+    index?: number
 }
 
 /**
- * Action Creator
+ * Push Colors
+ * @param colors Add Color Codes
  */
 export function PushColors(colors: Array<string>): IPushColorsAction {
     return {
@@ -21,6 +23,10 @@ export function PushColors(colors: Array<string>): IPushColorsAction {
     };
 }
 
+/**
+ * Add Color
+ * @param value Add Color Code
+ */
 export function AddColor(value: string): IPushColorsAction {
     return {
         type: ADD_COLOR,
@@ -28,10 +34,16 @@ export function AddColor(value: string): IPushColorsAction {
     };
 }
 
-export function DeleteColor(value: string): IPushColorsAction {
+/**
+ * Delete Color
+ * @param value Delete Color Code
+ * @param index Delete Color Code Index
+ */
+export function DeleteColor(value: string, index: number): IPushColorsAction {
     return {
         type: DELETE_COLOR,
-        payload: [value]
+        payload: [value],
+        index: index
     };
 }
 
