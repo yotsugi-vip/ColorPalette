@@ -1,10 +1,9 @@
 import * as vscode from 'vscode';
 import ViewLoader from './ViewLoader';
-import { join } from 'path';
 
 export function activate(context: vscode.ExtensionContext) {
-	let disposable = vscode.commands.registerCommand('colorpalette.helloWorld', () => {
-		let view = new ViewLoader(context.extensionUri);
+	let disposable = vscode.commands.registerCommand('colorpalette.openPalette', () => {
+		let view = new ViewLoader(context.extensionUri, context.extensionPath);
 	});
 }
 

@@ -1,13 +1,16 @@
 import * as vscode from 'vscode';
+import * as path from "path";
 
 export default class ViewLoader {
     private readonly _panel: vscode.WebviewPanel | undefined;
     private readonly _extensionUri: vscode.Uri;
+    private readonly _extensionPath: string;
     private readonly _config: vscode.WorkspaceConfiguration;
 
-    constructor(fileUri: vscode.Uri) {
+    constructor(fileUri: vscode.Uri, filePath: string) {
         this._config = vscode.workspace.getConfiguration('colorPalette');
         this._extensionUri = fileUri;
+        this._extensionPath = filePath;
         this._panel = vscode.window.createWebviewPanel(
             "colorPalette",
             "Color Palette",
@@ -21,6 +24,10 @@ export default class ViewLoader {
         );
 
         this._panel.webview.html = this.getBaseContent();
+        this._panel.iconPath = {
+            light: vscode.Uri.file(path.join(this._extensionPath, "asset/icon.svg")),
+            dark: vscode.Uri.file(path.join(this._extensionPath, "asset/icon.svg"))
+        };
 
         let colors = this._config.get('favoriteColors');
         console.log(colors);

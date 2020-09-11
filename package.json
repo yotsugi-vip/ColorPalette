@@ -1,9 +1,10 @@
 {
 	"name": "colorpalette",
 	"displayName": "colorPalette",
-	"description": "",
+	"description": "make color and register",
 	"publisher": "yotsugi",
 	"version": "0.0.1",
+	"icon": "asset/icon.png",
 	"engines": {
 		"vscode": "^1.47.0"
 	},
@@ -11,25 +12,20 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:colorpalette.helloWorld"
+		"onCommand:colorpalette.openPalette"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "colorpalette.helloWorld",
-				"title": "Hello World"
+				"command": "colorpalette.openPalette",
+				"title": "color palette",
+				"icon": {
+					"dark": "asset/icon.svg",
+					"light": "asset/icon.svg"
+				}
 			}
 		],
-		"viewsContainers": {
-			"activitybar": [
-				{
-					"icon": "src/icon.svg",
-					"id": "colorPalette",
-					"title": "colorPalette"
-				}
-			]
-		},
 		"configuration": {
 			"title": "ColorPalette",
 			"properties": {
@@ -89,7 +85,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/yotsugi-vip/ColorPalette.git"
+		"url": "https://github.com/yotsugi-vip/ColorPalette.git"
 	},
 	"author": "yotsugi",
 	"license": "MIT",
