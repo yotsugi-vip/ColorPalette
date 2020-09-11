@@ -9,13 +9,16 @@ export function HexComponent() {
     const store = useSelector<ISTORE, ISTORE>(state => state);
 
     return (
-        <div style={{ display: "flex" }}>
+        <div style={{
+            display: "flex",
+            marginTop: "10px"
+        }}>
             <input type="text" value={store.rgbValueReducer.hex}
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                    dispatch(SetRgbValue_HEX(event.target.value))
+                    dispatch(SetRgbValue_HEX(event.target.value));
                 }}
             />
             <ColorTips hex={store.rgbValueReducer.hex} />
         </div>
-    )
+    );
 }

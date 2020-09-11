@@ -1,6 +1,7 @@
 import { PUSH_COLORS, IPushColorsAction, ISetRgbValue, SET_HEX, SET_RED, SET_GREEN, SET_BLUE, ADD_COLOR, DELETE_COLOR, } from "./action";
 import { getRgbFromHex, UpdateHex } from "./color";
 import { vscode } from "./vscodeapi";
+
 /**
  * favorite color save
  */
@@ -59,24 +60,24 @@ export function rgbValueReducer(state: IStateRgbValue = INITIALIZE_RGB_VALUE, ac
     switch (action.type) {
         case SET_HEX:
             return Object.assign({}, state, {
-                hex: action.payload,
+                hex: action.payload.toUpperCase(),
                 red: getRgbFromHex(action.payload, "red"),
                 green: getRgbFromHex(action.payload, "green"),
                 blue: getRgbFromHex(action.payload, "blue")
             });
         case SET_RED:
             return Object.assign({}, state, {
-                hex: UpdateHex(action.payload, state.hex, "red"),
+                hex: UpdateHex(action.payload, state.hex, "red").toUpperCase(),
                 red: action.payload
             });
         case SET_GREEN:
             return Object.assign({}, state, {
-                hex: UpdateHex(action.payload, state.hex, "green"),
+                hex: UpdateHex(action.payload, state.hex, "green").toUpperCase(),
                 green: action.payload
             });
         case SET_BLUE:
             return Object.assign({}, state, {
-                hex: UpdateHex(action.payload, state.hex, "blue"),
+                hex: UpdateHex(action.payload, state.hex, "blue").toUpperCase(),
                 blue: action.payload
             });
         default:

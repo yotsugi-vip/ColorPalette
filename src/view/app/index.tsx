@@ -8,24 +8,33 @@ import { store } from "./store";
 import { PushColors } from "./action";
 
 import { FavoriteColors, InputFavorite } from "./components/favorite/FavoriteColor";
+import { Paper as Card } from "@material-ui/core";
 
 function App() {
   return (
     <div>
-      <div style={{
-        display: "flex"
+      <Card style={{
+        backgroundColor: "#3C3C3C"
       }}>
-        <div>
-          <HexComponent />
+        <div style={{
+          display: "flex",
+          marginTop: "10px",
+          marginLeft: "10px",
+        }}>
+          <div>
+            <HexComponent />
+          </div>
+          <div style={{ marginLeft: "10px", marginTop: "10px" }}>
+            <RgbComponent color="red" />
+            <RgbComponent color="green" />
+            <RgbComponent color="blue" />
+          </div>
         </div>
-        <div style={{marginLeft:"10px"}}>
-          <RgbComponent color="red" ></RgbComponent>
-          <RgbComponent color="green" ></RgbComponent>
-          <RgbComponent color="blue" ></RgbComponent>
-        </div>
+      </Card>
+      <div style={{marginTop:"10px"}}>
+        <InputFavorite />
+        <FavoriteColors />
       </div>
-      <InputFavorite />
-      <FavoriteColors />
     </div>
   );
 }

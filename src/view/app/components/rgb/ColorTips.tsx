@@ -1,5 +1,5 @@
 import * as React from 'react';
-
+import { RemoveSharp } from "../../color";
 function blackOrWhite(colorCode: string): string {
     let red = parseInt(colorCode.substr(1, 2));
     let green = parseInt(colorCode.substr(3, 2));
@@ -10,6 +10,7 @@ function blackOrWhite(colorCode: string): string {
 
 interface IPropsColorTips { hex: string };
 export function ColorTips(props: IPropsColorTips = { hex: "000000" }) {
+    props.hex = RemoveSharp(props.hex);
 
     return (
         <div>
@@ -24,7 +25,9 @@ export function ColorTips(props: IPropsColorTips = { hex: "000000" }) {
                     color: blackOrWhite("#" + props.hex),
                     margin: 0,
                 }}
-                >{props.hex}</p>
+                >
+                    {`#${props.hex}`}
+                </p>
             </div>
         </div>
     );

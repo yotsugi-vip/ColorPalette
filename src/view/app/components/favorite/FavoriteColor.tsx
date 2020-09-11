@@ -13,7 +13,9 @@ export function InputFavorite() {
     return (
         <>
             <Button
-                variant="contained" color="primary"
+                style={{ borderColor: "whitesmoke" }}
+                variant="outlined"
+                color="default"
                 onClick={() => {
                     if (store.rgbValueReducer.hex !== "") {
                         console.log('registered:', store.rgbValueReducer.hex);
@@ -21,7 +23,7 @@ export function InputFavorite() {
                         dispatch(SetRgbValue_HEX(""));
                     }
                 }}>
-                registar
+                <p style={{ color: "whitesmoke", margin:"0" }}>register</p>
             </Button>
         </>
     );
@@ -30,13 +32,10 @@ export function InputFavorite() {
 export function FavoriteColors() {
     const store = useSelector<ISTORE, ISTORE>(state => state);
     return (
-        <div>
-            <p>Favorite Colors</p>
-            <div>
-                {store.colorsReducer.colors.map((val, i) => (
-                    <FavoriteColorTip colorCode={val} index={i} />
-                ))}
-            </div>
+        <div style={{marginTop:"10px"}}>
+            {store.colorsReducer.colors.map((val, i) => (
+                <FavoriteColorTip colorCode={val} index={i} />
+            ))}
         </div>
     );
 }
