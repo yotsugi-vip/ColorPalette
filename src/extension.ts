@@ -7,7 +7,4 @@ export function activate(context: vscode.ExtensionContext) {
 	});
 }
 
-// これ?でjson保存
-//https://code.visualstudio.com/api/references/contribution-points#contributes.configuration
-// this method is called when your extension is deactivated
 export function deactivate() { }
