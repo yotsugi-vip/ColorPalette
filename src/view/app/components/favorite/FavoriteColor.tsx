@@ -78,7 +78,7 @@ export function FavoriteColorTip(props: IPropsFavoriteColor) {
                 <MenuItem
                     onClick={(_event: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
                         setAnchorEl(null);
-                        dispatch(DeleteColor(props.colorCode, props.index));
+                        dispatch(DeleteColor(`#${RemoveSharp(props.colorCode)}`, props.index));
                     }}
                 >
                     DELETE
