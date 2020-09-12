@@ -5,6 +5,7 @@ import { AddColor, DeleteColor, SET_HEX, SetRgbValue_HEX } from "../../action";
 import { ISTORE } from "../../store";
 import { MenuItem, Menu, Paper } from "@material-ui/core";
 import { vscode } from "../../vscodeapi";
+import { RemoveSharp } from '../../color';
 
 export function InputFavorite() {
     const dispatch = useDispatch();
@@ -23,7 +24,7 @@ export function InputFavorite() {
                         dispatch(SetRgbValue_HEX(""));
                     }
                 }}>
-                <p style={{ color: "whitesmoke", margin:"0" }}>register</p>
+                <p style={{ color: "whitesmoke", margin: "0" }}>register</p>
             </Button>
         </>
     );
@@ -32,7 +33,7 @@ export function InputFavorite() {
 export function FavoriteColors() {
     const store = useSelector<ISTORE, ISTORE>(state => state);
     return (
-        <div style={{marginTop:"10px"}}>
+        <div style={{ marginTop: "10px" }}>
             {store.colorsReducer.colors.map((val, i) => (
                 <FavoriteColorTip colorCode={val} index={i} />
             ))}
@@ -48,7 +49,7 @@ export function FavoriteColorTip(props: IPropsFavoriteColor) {
         <div>
             <Paper
                 style={{
-                    backgroundColor: `#${props.colorCode}`,
+                    backgroundColor: `#${RemoveSharp(props.colorCode)}`,
                     margin: '5px 5px 5px 5px',
                     height: '50px',
                     width: '100px',
