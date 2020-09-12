@@ -3,7 +3,7 @@
 	"displayName": "colorPalette",
 	"description": "make color and register",
 	"publisher": "yotsugi-vip",
-	"version": "0.0.1",
+	"version": "1.0.0",
 	"icon": "asset/icon.png",
 	"engines": {
 		"vscode": "^1.47.0"
